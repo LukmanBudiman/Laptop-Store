@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produk | Lukii Store</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f6f8;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    color:white;
+    padding:20px 40px;
+}
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+nav a{
+    color:white;
+    margin-left:20px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+nav a:hover{
+    color:#ffd700;
+}
+
+/* CONTAINER */
+.container{
+    padding:40px;
+}
+h1{
+    text-align:center;
+    color:#1e3c72;
+    margin-bottom:40px;
+}
+
+/* GRID */
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+/* CARD */
+.product-card{
+    background:white;
+    border-radius:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+    overflow:hidden;
+    position:relative;
+    z-index:1;
+    transition:all .45s cubic-bezier(.4,0,.2,1);
+
+    /* ANIMASI SCROLL */
+    opacity:0;
+    transform:translateY(40px) scale(0.95);
+}
+
+/* OVERLAY */
+.product-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,transparent,rgba(42,82,152,.15));
+    opacity:0;
+    transition:.4s;
+    pointer-events:none;
+}
+.product-card:hover::before{
+    opacity:1;
+}
+
+.product-card.show{
+    opacity:1;
+    transform:translateY(0) scale(1);
+}
+
+.product-card:hover{
+    transform:translateY(-12px) scale(1.03);
+    box-shadow:0 30px 60px rgba(30,60,114,.35);
+}
+
+/* IMAGE */
+.product-card img{
+    width:100%;
+    height:180px;
+    object-fit:contain;
+    background:#f9f9f9;
+    transition:.6s ease;
+}
+.product-card:hover img{
+    transform:scale(1.15);
+}
+
+/* CONTENT */
+.product-content{
+    padding:20px;
+}
+.product-content h3{
+    margin:0 0 10px;
+    color:#2a5298;
+}
+.product-content p{
+    font-size:14px;
+    color:#555;
+}
+.price{
+    font-size:18px;
+    font-weight:bold;
+    color:#1e3c72;
+    margin:15px 0;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:12px;
+    background:linear-gradient(135deg,#2a5298,#1e3c72);
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    position:relative;
+    z-index:2;
+    transition:.35s ease;
+}
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 30px rgba(30,60,114,.6);
+}
+button:active{
+    transform:scale(0.95);
+}
+
+/* FOOTER */
+footer{
+    background:#1e3c72;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<h2>Lukii Store</h2>
+<div>
+<a href="index.html">🏠 Home</a>
+<a href="kontak.html">📞 Kontak</a>
+</div>
+</nav>
+</header>
+
+<section class="container">
+<h1>Daftar Produk Laptop</h1>
+
+<div class="product-grid">
+
+<!-- === PRODUK 1–20 (TIDAK DIUBAH) === -->
+
+<!-- 1 -->
+<div class="product-card">
+<img src="vivobook14.jpeg">
+<div class="product-content">
+<h3>ASUS VivoBook 14</h3>
+<p>Intel i5, RAM 8GB, SSD 512GB</p>
+<div class="price">Rp 8.500.000</div>
+<button onclick="beliProduk('ASUS VivoBook 14',8500000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 2 -->
+<div class="product-card">
+<img src="acer aspire5.jpg">
+<div class="product-content">
+<h3>Acer Aspire 5</h3>
+<p>Ryzen 5, RAM 8GB, SSD 512GB</p>
+<div class="price">Rp 9.200.000</div>
+<button onclick="beliProduk('Acer Aspire 5',9200000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 3 -->
+<div class="product-card">
+<img src="Lenovo-Ideapad-Slim-3i (1).webp">
+<div class="product-content">
+<h3>Lenovo IdeaPad Slim 3</h3>
+<p>Intel i3, RAM 8GB, SSD 256GB</p>
+<div class="price">Rp 6.800.000</div>
+<button onclick="beliProduk('Lenovo IdeaPad Slim 3',6800000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 4 -->
+<div class="product-card">
+<img src="hp pavilion.jpeg">
+<div class="product-content">
+<h3>HP Pavilion 15</h3>
+<p>Intel i7, RAM 16GB, SSD 1TB</p>
+<div class="price">Rp 14.500.000</div>
+<button onclick="beliProduk('HP Pavilion 15',14500000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 5 -->
+<div class="product-card">
+<img src="dellinspiron.jpeg">
+<div class="product-content">
+<h3>Dell Inspiron 14</h3>
+<p>Intel i5, RAM 16GB, SSD 512GB</p>
+<div class="price">Rp 10.500.000</div>
+<button onclick="beliProduk('Dell Inspiron 14',10500000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 6 -->
+<div class="product-card">
+<img src="MSI GF63 Gaming.webp">
+<div class="product-content">
+<h3>MSI GF63 Gaming</h3>
+<p>Intel i5, RAM 16GB, SSD 512GB</p>
+<div class="price">Rp 13.800.000</div>
+<button onclick="beliProduk('MSI GF63 Gaming',13800000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 7 -->
+<div class="product-card">
+<img src="MacBook Air M1.jpeg">
+<div class="product-content">
+<h3>MacBook Air M1</h3>
+<p>Apple M1, RAM 8GB, SSD 256GB</p>
+<div class="price">Rp 15.900.000</div>
+<button onclick="beliProduk('MacBook Air M1',15900000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 8 -->
+<div class="product-card">
+<img src="Samsung Galaxy Book.webp">
+<div class="product-content">
+<h3>Samsung Galaxy Book</h3>
+<p>Intel i5, RAM 8GB, SSD 512GB</p>
+<div class="price">Rp 11.300.000</div>
+<button onclick="beliProduk('Samsung Galaxy Book',11300000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 9 -->
+<div class="product-card">
+<img src="ASUS TUF Gaming F15.webp">
+<div class="product-content">
+<h3>ASUS TUF Gaming F15</h3>
+<p>Intel i7, RAM 16GB, SSD 512GB</p>
+<div class="price">Rp 16.800.000</div>
+<button onclick="beliProduk('ASUS TUF Gaming F15',16800000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 10 -->
+<div class="product-card">
+<img src="Acer Nitro 5.jpg">
+<div class="product-content">
+<h3>Acer Nitro 5</h3>
+<p>Ryzen 7, RAM 16GB, SSD 1TB</p>
+<div class="price">Rp 17.500.000</div>
+<button onclick="beliProduk('Acer Nitro 5',17500000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 11 -->
+<div class="product-card">
+<img src="Lenovo Legion 5.png">
+<div class="product-content">
+<h3>Lenovo Legion 5</h3>
+<p>Ryzen 7, RAM 16GB, SSD 512GB</p>
+<div class="price">Rp 18.900.000</div>
+<button onclick="beliProduk('Lenovo Legion 5',18900000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 12 -->
+<div class="product-card">
+<img src="HP Victus 16.jpeg">
+<div class="product-content">
+<h3>HP Victus 16</h3>
+<p>Intel i7, RAM 16GB, SSD 512GB</p>
+<div class="price">Rp 17.800.000</div>
+<button onclick="beliProduk('HP Victus 16',17800000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 13 -->
+<div class="product-card">
+<img src="Dell XPS 13.jpeg">
+<div class="product-content">
+<h3>Dell XPS 13</h3>
+<p>Intel i7, RAM 16GB, SSD 1TB</p>
+<div class="price">Rp 21.500.000</div>
+<button onclick="beliProduk('Dell XPS 13',21500000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 14 -->
+<div class="product-card">
+<img src="ASUS ZenBook 14.jpg">
+<div class="product-content">
+<h3>ASUS ZenBook 14</h3>
+<p>Intel i7, RAM 16GB, SSD 1TB</p>
+<div class="price">Rp 19.200.000</div>
+<button onclick="beliProduk('ASUS ZenBook 14',19200000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 15 -->
+<div class="product-card">
+<img src="Acer Swift 3.jpeg">
+<div class="product-content">
+<h3>Acer Swift 3</h3>
+<p>Intel i5, RAM 8GB, SSD 512GB</p>
+<div class="price">Rp 10.200.000</div>
+<button onclick="beliProduk('Acer Swift 3',10200000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 16 -->
+<div class="product-card">
+<img src="Lenovo ThinkPad X1.png">
+<div class="product-content">
+<h3>Lenovo ThinkPad X1</h3>
+<p>Intel i7, RAM 16GB, SSD 1TB</p>
+<div class="price">Rp 23.500.000</div>
+<button onclick="beliProduk('Lenovo ThinkPad X1',23500000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 17 -->
+<div class="product-card">
+<img src="HP EliteBook 840.jpg">
+<div class="product-content">
+<h3>HP EliteBook 840</h3>
+<p>Intel i5, RAM 16GB, SSD 512GB</p>
+<div class="price">Rp 16.200.000</div>
+<button onclick="beliProduk('HP EliteBook 840',16200000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 18 -->
+<div class="product-card">
+<img src="MSI Modern 14.png">
+<div class="product-content">
+<h3>MSI Modern 14</h3>
+<p>Intel i5, RAM 8GB, SSD 512GB</p>
+<div class="price">Rp 9.900.000</div>
+<button onclick="beliProduk('MSI Modern 14',9900000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 19 -->
+<div class="product-card">
+<img src="ASUS ROG Zephyrus.png">
+<div class="product-content">
+<h3>ASUS ROG Zephyrus</h3>
+<p>Ryzen 9, RAM 32GB, SSD 1TB</p>
+<div class="price">Rp 29.500.000</div>
+<button onclick="beliProduk('ASUS ROG Zephyrus',29500000)">Beli Sekarang</button>
+</div></div>
+
+<!-- 20 -->
+<div class="product-card">
+<img src="MacBook Pro M2.jpg">
+<div class="product-content">
+<h3>MacBook Pro M2</h3>
+<p>Apple M2, RAM 16GB, SSD 512GB</p>
+<div class="price">Rp 24.900.000</div>
+<button onclick="beliProduk('MacBook Pro M2',24900000)">Beli Sekarang</button>
+</div></div>
+
+</div>
+</section>
+
+<footer>
+<p>&copy; 2025 Laptop Store | Semua Hak Dilindungi</p>
+</footer>
+
+<script>
+function beliProduk(nama,harga){
+    window.location.href =
+        "pesan.html?produk=" + encodeURIComponent(nama) +
+        "&harga=" + harga;
+}
+
+/* ANIMASI SCROLL */
+const cards = document.querySelectorAll(".product-card");
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+},{threshold:0.15});
+cards.forEach(card=>observer.observe(card));
+</script>
+
+</body>
+</html>
