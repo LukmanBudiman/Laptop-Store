@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pemesanan | Laptop Store</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f6f8;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    color:white;
+    padding:20px 40px;
+}
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+nav a{
+    color:white;
+    margin-left:20px;
+    text-decoration:none;
+    font-weight:bold;
+}
+nav a:hover{ text-decoration:underline }
+
+/* CONTAINER */
+.container{
+    max-width:800px;
+    margin:auto;
+    padding:40px;
+    animation:fadeUp .6s ease;
+}
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+h1{
+    text-align:center;
+    color:#1e3c72;
+    margin-bottom:30px;
+}
+
+/* FORM */
+.form-box{
+    background:white;
+    padding:30px;
+    border-radius:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+label{
+    font-weight:bold;
+    color:#2a5298;
+}
+input,textarea,select{
+    width:100%;
+    padding:12px;
+    margin:8px 0 20px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+textarea{ resize:none;height:100px }
+
+button{
+    width:100%;
+    padding:14px;
+    background:#2a5298;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+button:hover{
+    background:#1e3c72;
+    transform:translateY(-2px);
+}
+
+/* FOOTER */
+footer{
+    background:#1e3c72;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+
+/* ===== SUCCESS CHECKMARK ===== */
+.success-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    pointer-events:none;
+    transition:.4s;
+    z-index:9999;
+}
+.success-overlay.active{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.checkmark{
+    background:white;
+    padding:40px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    animation:pop .5s ease;
+}
+@keyframes pop{
+    from{transform:scale(.7);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+.checkmark svg{
+    width:110px;
+    height:110px;
+    stroke:#28a745;
+    stroke-width:4;
+    fill:none;
+    margin-bottom:15px;
+}
+
+.checkmark circle{
+    stroke-dasharray:166;
+    stroke-dashoffset:166;
+    animation:circle .6s ease forwards;
+}
+.checkmark path{
+    stroke-dasharray:48;
+    stroke-dashoffset:48;
+    animation:check .4s ease forwards .6s;
+}
+
+@keyframes circle{ to{stroke-dashoffset:0} }
+@keyframes check{ to{stroke-dashoffset:0} }
+
+.checkmark p{
+    font-size:18px;
+    font-weight:bold;
+    color:#28a745;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<h2>Lukii Store</h2>
+<div>
+<a href="home.html">🏠 Home</a>
+<a href="produk.html">💻 Produk</a>
+<a href="kontak.html">📞 Kontak</a>
+</div>
+</nav>
+</header>
+
+<section class="container">
+<h1>Form Pemesanan Laptop</h1>
+
+<div class="form-box">
+<form onsubmit="kirimPesanan(event)">
+
+<label>Nama Produk</label>
+<input type="text" id="produk" readonly>
+
+<label>Harga</label>
+<input type="text" id="harga" readonly>
+
+<label>Nama Pemesan</label>
+<input type="text" required placeholder="Masukkan nama lengkap">
+
+<label>Email</label>
+<input type="email" required placeholder="Masukkan email">
+
+<label>Nomor HP</label>
+<input type="text" required placeholder="08xxxxxxxxxx">
+
+<label>Alamat Pengiriman</label>
+<textarea required placeholder="Masukkan alamat lengkap"></textarea>
+
+<label>Metode Pembayaran</label>
+<select required>
+<option value="">-- Pilih Pembayaran --</option>
+<option>Transfer Bank</option>
+<option>COD</option>
+<option>E-Wallet</option>
+</select>
+
+<button type="submit">Kirim Pesanan</button>
+</form>
+</div>
+</section>
+
+<footer>
+<p>&copy; 2025 Laptop Store | Pemesanan</p>
+</footer>
+
+<!-- SUCCESS CHECKMARK -->
+<div class="success-overlay" id="success">
+<div class="checkmark">
+<svg viewBox="0 0 52 52">
+<circle cx="26" cy="26" r="25"/>
+<path d="M14 27 l7 7 l17 -17"/>
+</svg>
+<p>Pesanan Berhasil!</p>
+</div>
+</div>
+
+<script>
+// Ambil data dari produk
+const params=new URLSearchParams(window.location.search);
+const produk=params.get("produk");
+const harga=params.get("harga");
+
+if(produk) document.getElementById("produk").value=produk;
+if(harga) document.getElementById("harga").value=
+    "Rp "+Number(harga).toLocaleString("id-ID");
+
+// Submit + animasi
+function kirimPesanan(e){
+    e.preventDefault();
+    document.getElementById("success").classList.add("active");
+    setTimeout(()=>window.location.href="home.html",2500);
+}
+</script>
+
+</body>
+</html>
